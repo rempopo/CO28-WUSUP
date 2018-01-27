@@ -10,14 +10,13 @@ dzn_fnc_tasks_activateTask = {
 		Start position
 	*/
 	private _startPosCore = CSELECT(_syncObjs, { typeof _x == "LocationArea_F" });
-	Task_StartPos = getPosASL ( 
-		selectRandom ( 
-			[
-				synchronizedObjects _startPosCore
-				, { typeof _x == "LocationArea_F" }
-			] call BIS_fnc_conditionalSelect
-		)
+	private _startPos = selectRandom ( 
+		[
+			synchronizedObjects _startPosCore
+			, { typeof _x == "LocationArea_F" }
+		] call BIS_fnc_conditionalSelect
 	);
+	Task_StartPos = getPosASL _startPos;
 
 	/*
 		Seize Area
@@ -30,6 +29,11 @@ dzn_fnc_tasks_activateTask = {
 	private _dynaiZonesCore = CSELECT(_syncObjs, { typeof _x == "LocationCamp_F" });
 	Task_DynaiZone_Main = CSELECT(synchronizedObjects _dynaiZonesCore, { typeof _x == "LocationBase_F" });
 	Task_DynaiZone_Reinforcement = CSELECT(synchronizedObjects _dynaiZonesCore, { typeof _x == "LocationOutpost_F" });
+	
+	/*
+		Vehicles for players
+	*/
+	[Task_StartPos, getDir _startPos, dzn_tasks_alliedVehicleCount] call dzn_fnc_tasks_setVehiclesInArea;
 	
 	/*
 		Publish
@@ -114,3 +118,27 @@ dzn_fnc_tasks_client_movePlayerToStartPos = {
 	};
 };
 
+dzn_fnc_tasks_setVehiclesInArea = {
+	if (("par_playerVehicles" call BIS_fnc_getParamValue) == 0) exitWith {};
+	
+	params["_pos", "_dir", "_count"];
+	
+	private _faction = ["usarmy","usmc","ruvv","pmc"] select ("par_playerFaction" call BIS_fnc_getParamValue);
+	private _classes = ([dzn_tasks_alliedVehicleClassPerFaction, _faction] call dzn_fnc_getValueByKey) select (("par_playerVehicles" call BIS_fnc_getParamValue) - 1); // "rhsusf_m998_d_2dr_fulltop","rhsusf_m998_d_2dr_fulltop"]
+	_classes = _classes call BIS_fnc_arrayShuffle;
+	
+	private _classPool = [];	
+	while { count _classPool < _count } do {
+		_classPool = _classPool + _classes;
+	};
+	
+	for "_i" from 1 to _count do {
+		_pos = _pos getPos [20, _dir];
+		
+		_veh = [ 
+			[_pos, _dir]
+			, _classPool select (_i - 1)
+			, "kit_vehicle"
+		] call dzn_fnc_createVehicle;
+	};
+};
