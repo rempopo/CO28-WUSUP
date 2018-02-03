@@ -6,6 +6,16 @@ Warm Up scenario with randomized roles
 ###### Map Compatibility:
 - 
 
+###### Factions
+- US Army (OCP)
+- BAF (DPM)
+- US Special Forces
+- Russian Special Forces
+- Private Military Company
+- European Rebels
+- TODO: BAF (DDPM)
+- TODO: Jihadists
+
 #### Scope:
 <br/>:white_large_square: Separate scripts and mission.sqm for map compatibility
 <br/>:white_large_square: Port 2H scripts
