@@ -16,6 +16,17 @@ Warm Up scenario with randomized roles
 - TODO: BAF (DDPM)
 - TODO: Jihadists
 
+#### Faction kits
+- SL - Rifle + Optics
+- FTL - Rifle+GL + Optics
+- AR  - Autorifle + Optics
+- G - Rifle+GL
+- R - Rifle + AT
+- PL
+- AT
+
+
+
 #### Scope:
 <br/>:white_large_square: Separate scripts and mission.sqm for map compatibility
 <br/>:white_large_square: Port 2H scripts
