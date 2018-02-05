@@ -1,39 +1,38 @@
 # CO28-WUSUP
 Warm Up scenario with randomized roles
 
-##### Version: 2I
+#### Version: 2I
 
-###### Map Compatibility:
+#### Map Compatibility:
 - 
 
-###### Factions
+#### Factions
 - US Army (OCP)
-- BAF (DPM)
 - US Special Forces
+- BAF (DPM)
+- BAF (DDPM)
 - Russian Special Forces
 - Private Military Company
 - European Rebels
-- TODO: BAF (DDPM)
-- TODO: Jihadists
-
-#### Faction kits
-- SL - Rifle + Optics
-- FTL - Rifle+GL + Optics
-- AR  - Autorifle + Optics
-- G - Rifle+GL
-- R - Rifle + AT
-- PL
-- AT
+- Jihadists
 
 
+### Editing
+##### Porting to maps
+1. Save empty mission
+2. Download Scripts and place to mission folder
+3. Run `[] execVM "addCore.sqf"` in debug console
+4. Run `[] execVM "addObj.sqf"` for each objective position
+5. Move and configure added assets
 
-#### Scope:
-<br/>:white_large_square: Separate scripts and mission.sqm for map compatibility
-<br/>:white_large_square: Port 2H scripts
-<br/>:white_large_square: Fix JIP Teleport (failed to teleport due to fast init of jipteleport when players moves out of area)
-<br/>:white_large_square: Fix TFAR LR radio distribution to non-SL/PL roles
-<br/>:white_check_mark: Allied Vehicle spawning
-<br/>:white_large_square: 3DEN script for assets generation
-<br />
-<br />
-<br />:white_check_mark: - done; :white_square_button: - in test; :white_large_square: - in design.
+##### Faction kits
+In format `kit_FACTION_ROLE` (e.g. `kit_usocp_ftl`).
+<br />Roles:
+- sl (Squad Lader)
+- ftl (Fireteam Leader)
+- ar (Automatic Rifleman)
+- g (Grenadier)
+- r (Rifleman)
+- pl (Platoon Leader, may be same as SL)
+- at (anti-tank kit for NPC)
+- random (for NPC)
