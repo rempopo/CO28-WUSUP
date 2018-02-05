@@ -79,4 +79,35 @@ collect3DENHistory {
 		["mil_objective", "mrk_task", "Capture and Hold", "ColorOPFOR", 100]
 		, ["mil_start", "mrk_start", "Initial Position", "ColorBLUFOR", 100]
 	];
+	
+	// Scenario settings
+	set3DENMissionAttributes [
+		["Scenario","IntelBriefingName", "CO28 WUSUP (2I)"]
+		, ["Scenario","OverviewText", "Warm Up and prepare Uranus"]	
+		, ["Scenario","OnLoadMission", "Warm Up and prepare Uranus"]			
+		, ["Scenario","OverviewPicture", "overview.jpg"]
+		, ["Scenario","LoadScreen", "overview.jpg"]
+		, ["Scenario","OverviewPictureLocked", "overview.jpg"]
+		, ["Scenario","Author", "Tactical Shift"]			
+		, ["Scenario","Saving", false]
+		, ["Scenario","EnableDebugConsole", 1]
+		, ["Scenario","SaveBinarized", false]			
+		
+		, ["Multiplayer","MinPlayers", 1]
+		, ["Multiplayer","MaxPlayers", 28]
+		, ["Multiplayer","GameType","Coop"]
+		, ["Multiplayer","IntelOverviewText", "Warm Up and prepare Uranus"]	
+		, ["Multiplayer","DisabledAI", true]
+		, ["Multiplayer","respawn",3]
+		, ["Multiplayer","RespawnDialog", false]
+		, ["Multiplayer","RespawnButton", 0]
+		, ["Multiplayer","RespawnTemplates", ["ace_spectator","EndMission"]]
+	];
+	
+	private _respawnMrk = create3DENEntity ["Marker","mil_start", screenToWorld [0.5,0.5]];
+	_respawnMrk set3DENAttribute ["name", "respawn_west"];
+	_respawnMrk set3DENAttribute ["text", "Rename me to 'respawn_west'"];
+	do3DENAction "ToggleMap";
+	
+	"- Scenario was configured -" call dzn_fnc_tSF_3DEN_ShowNotif;	
 };

@@ -1,3 +1,4 @@
+// Add Objective assets
 collect3DENHistory {
 	private _basicPos = screenToWorld [0.5, 0.5];
 	private _taskCore = ((all3DENEntities select 3) select { ((_x get3DENAttribute "name") select 0) == "tasksCore" }) select 0;
