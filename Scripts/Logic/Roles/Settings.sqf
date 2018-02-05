@@ -1,5 +1,5 @@
-dzn_roles_assignmentDelay = 1; //3;
-dzn_roles_playerRoleScreenShowTime = 3; // 11;
+dzn_roles_assignmentDelay = 3; //3;
+dzn_roles_playerRoleScreenShowTime = 11; // 11;
 
 dzn_roles_numberOfGroups = 4;
 

@@ -6,7 +6,7 @@ collect3DENHistory {
 	// Units - Regulaes
 	private _regulars = [];
 	private _regularsLogic = create3DENEntity ["Logic","Logic", _basicPos getPos [15, 45]];
-	_regularsLogic set3DENAttribute ["Name", "RegularLogic"];
+	_regularsLogic set3DENAttribute ["name", "RegularLogic"];
 	for "_i" from 1 to 23 do {
 		_regulars pushBack ( create3DENEntity ["Object", "B_Soldier_unarmed_F", _basicPos getPos [10 + 3*_i, 90]] );
 	};
@@ -16,7 +16,7 @@ collect3DENHistory {
 	private _pos = _basicPos getPos [20, -90];
 	private _newbies = [];
 	private _newbiesLogic = create3DENEntity ["Logic","Logic", _pos getPos [15, -45]];
-	_newbiesLogic set3DENAttribute ["Name", "NewbiesLogic"];
+	_newbiesLogic set3DENAttribute ["name", "NewbiesLogic"];
 	for "_i" from 1 to 5 do {
 		_newbies pushBack ( create3DENEntity ["Object", "B_Soldier_unarmed_F", _pos getPos [3*_i, -90]] );
 	};
@@ -34,7 +34,7 @@ collect3DENHistory {
 
 	// Headless
 	private _headless = create3DENEntity ["Logic","HeadlessClient_F",screenToWorld [0.7,0.7]];
-	_headless set3DENAttribute ["Name", "HC"];
+	_headless set3DENAttribute ["name", "HC"];
 	_headless set3DENAttribute ["ControlMP", true];
 	
 	// Virtual Spectator
@@ -52,7 +52,7 @@ collect3DENHistory {
 	private _dynaiLogics = [];
 	{
 		private _logic = create3DENEntity ["Logic","Logic",screenToWorld (_x select 0)];
-		_logic set3DENAttribute ["Name", (_x select 1)];
+		_logic set3DENAttribute ["name", (_x select 1)];
 		_dynaiLogics pushBack _logic;
 		
 		if (_forEachIndex > 0) then {
@@ -66,7 +66,7 @@ collect3DENHistory {
 	
 	// Tasks
 	private _tasksCore = create3DENEntity ["Logic","Logic", screenToWorld [0.35,0.7]];
-	_tasksCore set3DENAttribute ["Name", "tasksCore"];
+	_tasksCore set3DENAttribute ["name", "tasksCore"];
 	
 	{
 		private _mrk = create3DENEntity ["Marker", _x select 0, screenToWorld [0.5,0.2+(_forEachIndex/10)]];
@@ -76,8 +76,8 @@ collect3DENHistory {
 		_mrk set3DENAttribute ["Alpha", _x select 4];
 		
 	} forEach [
-		["mil_objective", "mrk_task", "Capture and Hold", "ColorOPFOR", 100]
-		, ["mil_start", "mrk_start", "Initial Position", "ColorBLUFOR", 100]
+		["mil_objective", "mrk_task", "Capture and Hold", "ColorOPFOR", 0]
+		, ["mil_start", "mrk_start", "Initial Position", "ColorBLUFOR", 0]
 	];
 	
 	// Scenario settings

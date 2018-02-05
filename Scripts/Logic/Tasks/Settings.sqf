@@ -1,5 +1,5 @@
-dzn_tasks_taskInitDelay = 1; //8;
-dzn_tasks_taskCreateDelay = 2; //18;
+dzn_tasks_taskInitDelay = 8; //8;
+dzn_tasks_taskCreateDelay = 18; //18;
 
 dzn_tasks_seizeTime = "par_capturetimer" call BIS_fnc_getParamValue;
 
