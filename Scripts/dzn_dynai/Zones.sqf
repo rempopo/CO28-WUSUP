@@ -1,6 +1,7 @@
 
 /* *********** This array defines detailed properties of zones ************************** */
 
+
 [
     "Main", /* Zone Name */
     "EAST",false, /* Side, is Active */ [],[],

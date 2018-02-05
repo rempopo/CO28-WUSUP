@@ -1,3 +1,5 @@
+params ["_isServerExec"];
+
 call compile preprocessFileLineNumbers "Logic\Tasks\Settings.sqf";
 call compile preprocessFileLineNumbers "Logic\Tasks\Functions.sqf";
 
@@ -11,7 +13,7 @@ if (hasInterface) then {
 	};
 };
 
-if !(isServer || isDedicated) exitWith {};
+if !( (isServer || isDedicated) && _isServerExec ) exitWith {};
 
 waitUntil { time > dzn_tasks_taskInitDelay };
 Task = call dzn_fnc_tasks_getRandomTask;

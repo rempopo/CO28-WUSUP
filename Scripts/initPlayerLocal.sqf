@@ -1,5 +1,7 @@
+call compile preProcessFileLineNumbers "Logic\Faction\Init.sqf";
+
 [] execVM "Logic\Roles\Init.sqf";
-[] execVM "Logic\Tasks\Init.sqf";
+[false] execVM "Logic\Tasks\Init.sqf";
 [] execVM "Logic\Notifications\Init.sqf";
 
 

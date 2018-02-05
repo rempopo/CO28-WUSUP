@@ -1,3 +1,13 @@
+#define	FACTION_COUNT		0,1,2,3,4,5,6,7
+#define	FACTIONS	"US Army (OCP)" \
+				, "US Army SF" \
+				, "BAF (DPM)" \
+				, "BAF (DDPM)" \
+				, "РФ Спецназ ВВ" \
+				, "Private Military Company" \
+				, "European Rebels" \
+				, "Jihadists"	
+			
 // dzn Common Functions (remove if not using it)
 #include "dzn_commonFunctions\dzn_commonFunctions.hpp"
 #include "dzn_commonFunctions\ui\baseDialogs.hpp"
@@ -54,27 +64,34 @@ class Params
 	class par_playerFaction
 	{
 		title = "    Фракция игроков";
+		values[] = { FACTION_COUNT };
+		default = 0;
+		texts[] = { FACTIONS	};
+	};
+	class par_playerVehicles
+	{
+		title = "    Техника для игроков";
 		values[] = {0,1,2,3};
 		default = 0;
 		texts[] = {
-			"US Army (OCP)"
-			, "РФ Спецназ ВВ"
-			, "BAF (DPM)"
-			, "US Army SF"
+			"Нет"
+			, "Транспорт"
+			, "Вооруженная машина"
+			, "БТР"
 		};
-	}; 
+	}
+	class par_playerVehiclesCount
+	{
+		title = "    Кол-во техники для игроков";
+		values[] = {1,2,3,4,5};
+		default = 1;
+	}
 	class par_hostileFaction
 	{
 		title = "    Фракция противников";
-		values[] = {0,1,2,3,4};
-		default = 2;
-		texts[] = {
-			"US Army (OCP)"
-			, "РФ Спецназ ВВ"
-			, "Повстанцы"	
-			, "BAF (DPM)"
-			, "US Army SF"
-		};
+		values[] = { FACTION_COUNT };
+		default = 6;
+		texts[] = { FACTIONS	};
 	}; 
 	class par_hostileAmount
 	{
@@ -141,7 +158,7 @@ class Params
 		title = "tS AAR Logging";
 		values[] = {0,1};
 		texts[] = {"Disabled","Enabled"};
-		default = 1;
+		default = 0;
 	};
 	
 	class par_dynai_delimeter
@@ -192,19 +209,19 @@ class Params
 	class par_dynai_skillGeneral
 	{
 		title = "          Skill: General (%)";
-		values[] = {60,65,70,75,80,85,90,95,100};
+		values[] = {10,20,30,40,50,60,65,70,75,80,85,90,95,100};
 		default = 95;
 	};
 	class par_dynai_skillAccuracy
 	{
 		title = "          Skill (Complex): Accuracy (%)";
-		values[] = {40,45,50,55,60,65,70,75,80,85,90,95,100};
+		values[] = {10,20,30,40,45,50,55,60,65,70,75,80,85,90,95,100};
 		default = 80;
 	};
 	class par_dynai_skillAimSpeed
 	{
 		title = "          Skill (Complex): Aiming Speed (%)";
-		values[] = {40,45,50,55,60,65,70,75,80,85,90,95,100};
+		values[] = {10,20,30,40,45,50,55,60,65,70,75,80,85,90,95,100};
 		default = 90;
 	};
 };

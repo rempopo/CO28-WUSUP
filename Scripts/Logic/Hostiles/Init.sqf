@@ -23,12 +23,6 @@ Main call dzn_fnc_dynai_activateZone;
 [] spawn dzn_fnc_hostiles_runReinfocementCaller;
 
 waitUntil { !isNil "dzn_hostiles_reinforcementsCalled" };
+[Reinforcement, call dzn_fnc_hostiles_getReinforcementRandomPositions] call dzn_fnc_dynai_setZoneKeypoints;
+
 Reinforcement call dzn_fnc_dynai_activateZone;
-
-sleep 40;
-
-[
-	Reinforcement
-	, call dzn_fnc_hostiles_getReinforcementRandomPositions
-	, "PATROL"
-] call dzn_fnc_dynai_moveGroups;

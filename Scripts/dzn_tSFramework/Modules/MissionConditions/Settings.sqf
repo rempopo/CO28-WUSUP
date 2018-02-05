@@ -19,7 +19,7 @@ tSF_MissionCondition_DefaultCheckTimer 			= 15;
  * List of mission Ends and Conditions (up to 20 conditions allowed)
  * In format MissionCondition%1 = [ 
  * 			@EndingClassname(String)
- *			, @Condition(String)
+ *			, @Condition(String or @Code)
  *			, @Note/Description(String)
  *			, @TimerInterval(Number,seconds, optional) 
  *		];
@@ -40,14 +40,13 @@ tSF_MissionCondition_DefaultCheckTimer 			= 15;
  *	Игроков в зоне больше 3 (see https://github.com/10Dozen/dzn_commonFunctions/wiki/Area-Functions#dzn_fnc_ccplayers)
  *			[TRG_1, "", "> 3"] call dzn_fnc_ccPlayers 
  *	Все игроки умерли:
- *			{ {alive _x} count (call BIS_fnc_listPlayers) < 1}
+ *			(call fnc_isAllDead)
  *	Юнитов красной стороны в зоне TRG_1 меньше 3 (see https://github.com/10Dozen/dzn_commonFunctions/wiki/Area-Functions#dzn_fnc_ccunits)
  *			[ TRG_1, "east", "", "< 3"] call dzn_fnc_ccUnits
  *	Вооруженных юнитов красной стороны в зонах TRG_1, TRG_2, TRG_3 меньше 3
  *			[ [TRG_1, TRG_2, TRG_3], "east", "primaryWeapon _x != ''", "< 3"] call dzn_fnc_ccUnits
  */
 
-// Код условия может быть строкой или кодом в { }
 waitUntil {!isNil "EndGameTimer"};
 
 MissionCondition1 = [ "WIN", { !isNil 'Task_SeizeArea_Done' && EndGameTimer >= 0 }, "Zone captured" ];

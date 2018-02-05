@@ -1,5 +1,5 @@
-dzn_roles_assignmentDelay = 3;
-dzn_roles_playerRoleScreenShowTime = 11;
+dzn_roles_assignmentDelay = 1; //3;
+dzn_roles_playerRoleScreenShowTime = 3; // 11;
 
 dzn_roles_numberOfGroups = 4;
 
@@ -61,12 +61,7 @@ dzn_roles_squadNames = [
 	, [4, "1'6"]
 ];
 
-dzn_roles_faction = 	[
-					"usocp" 	/*"US OCP"*/					
-					,"ruvv" 	/*"RU VV"*/
-					,"ukaf"	/*"UK AF"*/
-					,"ussf"	/*"US SF"*/
-				] select ("par_playerFaction" call BIS_fnc_getParamValue);
+dzn_roles_faction = dzn_faction_factionList select ("par_playerFaction" call BIS_fnc_getParamValue);
 
 dzn_roles_swFreq = "228";
 dzn_roles_lrFreq = "50";

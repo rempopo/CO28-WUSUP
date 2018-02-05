@@ -5,15 +5,23 @@
 dzn_fnc_hostiles_generateGroups = {
 	private _par_amount = ("par_hostileAmount" call BIS_fnc_getParamValue);
 	
-	private _kit = format["kit_%1_random", dzn_hostiles_faction];	
+	private _kit = format["kit_%1_random", dzn_hostiles_faction];
+	if ("par_playerVehicles" call BIS_fnc_getParamValue > 0) then {
+		call compile format [
+			"for '_i' from 1 to 3 do { kit_%1_random pushBack 'kit_%1_at' };"
+			, dzn_hostiles_faction
+		];
+	};
+	
 	private _kitVeh = "kit_vehicle";
 	/*format ["kit_%1_vehicle", dzn_hostiles_faction];*/
 	
-	private _vehicleClasses  = if (dzn_hostiles_armor > 0) then { 
-		([dzn_hostiles_armorClassPerFaction, dzn_hostiles_faction] call dzn_fnc_getValueByKey) select (dzn_hostiles_armor - 1)
+	private _vehicleClasses = if (dzn_hostiles_armor > 0) then { 
+		([dzn_faction_vehicles, dzn_hostiles_faction] call dzn_fnc_getValueByKey) select (dzn_hostiles_armor + 1)
 	} else {
 		[]
-	};	
+	};
+	private _reinforcementVehicleClasses = ([dzn_faction_vehicles, dzn_hostiles_faction] call dzn_fnc_getValueByKey) select 0;
 
 	#define	MAN_PATROL		[dzn_hostiles_baseInfantryClass, [], _kit]
 	#define	MAN_BUILD		[dzn_hostiles_baseInfantryClass, ["indoors"], _kit]
@@ -23,11 +31,13 @@ dzn_fnc_hostiles_generateGroups = {
 	#define	MAN_COMANDER	[dzn_hostiles_baseInfantryClass, [0,"Commander"], _kit]
 	
 	#define	GET_RANDOM_VEH	(selectRandom _vehicleClasses)
-	#define	VEH_ROADHOLD	[GET_RANDOM_VEH, "Vehicle Road Hold", _kitVeh]
+	#define	GET_RANDOM_TRANSPORT		(selectRandom _reinforcementVehicleClasses)
+	#define	VEH_ROADHOLD		[GET_RANDOM_VEH, "Vehicle Road Hold", _kitVeh]
 	#define	VEH_ROADPATROL	[GET_RANDOM_VEH, "Vehicle Road Hold", _kitVeh]
 	#define	VEH_PATROL		[GET_RANDOM_VEH, "Vehicle Patrol", _kitVeh]
+	#define	VEH_REINF		[GET_RANDOM_TRANSPORT, "Vehicle Advance", _kitVeh]
 	
-	#define	GET_AMOUNT(X)	(([dzn_hostiles_groupsPerAmount,X] call dzn_fnc_getValueByKey) select _par_amount)
+	#define	GET_AMOUNT(X)		(([dzn_hostiles_groupsPerAmount,X] call dzn_fnc_getValueByKey) select _par_amount)
 
 	// Patrols
 	private _group_2MP = [GET_AMOUNT("2MP"), [MAN_PATROL, MAN_PATROL]];	
@@ -52,7 +62,7 @@ dzn_fnc_hostiles_generateGroups = {
 	];
 	
 	// Reinforcements
-	private _group_4MP_R = [GET_AMOUNT("4MP-R"), [MAN_PATROL, MAN_PATROL, MAN_PATROL, MAN_PATROL]];
+	private _group_4MP_R = [GET_AMOUNT("4MP-R"), [VEH_REINF, MAN_PATROL, MAN_PATROL, MAN_PATROL, MAN_DRIVER]];
 	private _group_V_R = [ 
 		if (dzn_hostiles_armor == 0) then { 0 } else { GET_AMOUNT("V-R") }
 		, [VEH_PATROL, MAN_DRIVER, MAN_GUNNER]
@@ -108,7 +118,7 @@ dzn_fnc_hostiles_addLocationsReinforcement = {
 dzn_fnc_hostiles_getReinforcementRandomPositions = {
 	private _poses = [];
 	for "_i" from 0 to 6 do {
-		_poses pushBack ([getPosATL Main, random(360), 100 + random(1100)] call dzn_fnc_getPosOnGivenDir);
+		_poses pushBack ([getPosATL Main, random(360), 100 + random(300)] call dzn_fnc_getPosOnGivenDir);
 	};
 	
 	_poses

@@ -2,7 +2,6 @@
  *	You can change MissionDate to some specific date to override date set in mission editor:
  *		format:		[@Year, @Month, @Day, @Hours, @Minutes] (e.g. [2012, 12, 31, 12, 45])
  */
-
 MissionDate = [
 	date select 0
 	, date select 1
@@ -24,7 +23,7 @@ setDate MissionDate;
 /*
  *	Weather
  */
-if (!isNil "dzn_fnc_setWeather") then {	
+if (!isNil "dzn_fnc_setWeather") then {
 	("par_weather" call BIS_fnc_getParamValue) spawn dzn_fnc_setWeather;
 };
 
@@ -45,9 +44,10 @@ PlayerConnectedEH = addMissionEventHandler ["PlayerConnected", {
 /*
  * Logics
  */
+call compile preProcessFileLineNumbers "Logic\Faction\Init.sqf";
 
 [] execVM "Logic\Roles\Init.sqf";
-[] execVM "Logic\Tasks\Init.sqf";	
+[true] execVM "Logic\Tasks\Init.sqf";	
 
 EndGameTimerLimit = ("par_endgametimer" call BIS_fnc_getParamValue)*60;
 EndGameTimer = EndGameTimerLimit;
@@ -62,4 +62,3 @@ publicVariable "EndGameTimer";
 		publicVariable "EndGameTimer";
 	};
 };
-

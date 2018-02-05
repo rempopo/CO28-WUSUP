@@ -3,7 +3,7 @@ dzn_fnc_tasks_getRandomTask = {
 	selectRandom (synchronizedObjects tasksCore)
 };
 
-dzn_fnc_tasks_activateTask = {	
+dzn_fnc_tasks_activateTask = {
 	private _syncObjs = synchronizedObjects _this;
 
 	/*
@@ -32,8 +32,11 @@ dzn_fnc_tasks_activateTask = {
 	
 	/*
 		Vehicles for players
-	*/
-	[Task_StartPos, getDir _startPos, dzn_tasks_alliedVehicleCount] call dzn_fnc_tasks_setVehiclesInArea;
+	*/	
+	[getPos _startPos, getDir _startPos, dzn_tasks_alliedVehicleCount] spawn {
+		waitUntil {!isNil "dzn_roles_faction"};
+		_this call dzn_fnc_tasks_setVehiclesInArea;
+	};
 	
 	/*
 		Publish
@@ -69,36 +72,29 @@ dzn_fnc_tasks_createSimpleTask = {
 };
 
 dzn_fnc_tasks_runSeizeAreaHandler = {	
-	dzn_tasks_canCheckSeize = true;
-	dzn_tasks_waitAndCheckSeize = {
-		dzn_tasks_canCheckSeize = false;
+	while { true } do {
 		sleep 1;
-		dzn_tasks_canCheckSeize = true;
-	};	
-	
-	["dzn_task_seizeChecker", "onEachFrame", {
-		if (!dzn_tasks_canCheckSeize || !(isNil "Task_SeizeArea_Done")) exitWith {};
-		[] spawn dzn_tasks_waitAndCheckSeize;
 		
 		// If no players in area or there are enemy troops in the area -- nil the counter
 		if (
 			!([Task_SeizeArea, "bool"] call dzn_fnc_isPlayerInArea)
 			|| { { (side _x == east) && {_x inArea Task_SeizeArea} } count allUnits > 0 }
-		) exitWith { 
+		) then { 
 			Task_SeizeArea_Counter = nil; 
 			publicVariable "Task_SeizeArea_Counter";
-		};
-		
+		} else {
+	
 		// If players persist -- add +1 sec to counter
 		Task_SeizeArea_Counter = if (isNil "Task_SeizeArea_Counter") then { 0 } else { Task_SeizeArea_Counter + 1 };
 		publicVariable "Task_SeizeArea_Counter";
 		
-		// If counter ends -- Done this stuff
-		if (Task_SeizeArea_Counter > dzn_tasks_seizeTime) then {
-			Task_SeizeArea_Done = true;
-			publicVariable "Task_SeizeArea_Done";
+			// If counter ends -- Done this stuff
+			if (!isNil "Task_SeizeArea_Counter" && { Task_SeizeArea_Counter > dzn_tasks_seizeTime }) exitWith {
+				Task_SeizeArea_Done = true;
+				publicVariable "Task_SeizeArea_Done";
+			};	
 		};
-	}] call BIS_fnc_addStackedEventHandler;
+	};
 };
 
 dzn_fnc_tasks_client_movePlayerToStartPos = {	
@@ -123,9 +119,7 @@ dzn_fnc_tasks_setVehiclesInArea = {
 	
 	params["_pos", "_dir", "_count"];
 	
-	private _faction = ["usarmy","usmc","ruvv","pmc"] select ("par_playerFaction" call BIS_fnc_getParamValue);
-	private _classes = ([dzn_tasks_alliedVehicleClassPerFaction, _faction] call dzn_fnc_getValueByKey) select (("par_playerVehicles" call BIS_fnc_getParamValue) - 1); // "rhsusf_m998_d_2dr_fulltop","rhsusf_m998_d_2dr_fulltop"]
-	_classes = _classes call BIS_fnc_arrayShuffle;
+	private _classes = dzn_tasks_alliedVehicleClasses call BIS_fnc_arrayShuffle;
 	
 	private _classPool = [];	
 	while { count _classPool < _count } do {

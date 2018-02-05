@@ -5,6 +5,9 @@
  *	tSF_JIPTeleport_MaxDistance	-	distance from spawn point
  *
 */ 
+
+tSF_JIPTeleport_InitCondition	= { true };
+tSF_JIPTeleport_InitTimeout		= 	10;
 tSF_JIPTeleport_MaxTime			=	600;	// seconds (min. 10 seconds)
 tSF_JIPTeleport_MaxDistance		=	75;	// meters
 

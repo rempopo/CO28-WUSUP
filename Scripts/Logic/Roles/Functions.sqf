@@ -147,6 +147,9 @@ dzn_fnc_roles_assignPlayersRole = {
 		// };
 	};
 	
+	_this setVariable ["WUSUP_RoleAssigned", true, true];
+	
+	
 	/*
 		Show Role and ORBAT
 	*/
