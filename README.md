@@ -20,10 +20,11 @@ Warm Up scenario with randomized roles
 ### Editing
 ##### Porting to maps
 1. Save empty mission
-2. Download Scripts and place to mission folder
-3. Run `[] execVM "addCore.sqf"` in debug console
-4. Run `[] execVM "addObj.sqf"` for each objective position
-5. Move and configure added assets
+2. Download and extract dzn_DynAI, dzn_commonFunctions, dzn_gear, dzn_tSFramework
+3. Download Scripts and place to mission folder
+4. Run `[] execVM "addCore.sqf"` in debug console
+5. Run `[] execVM "addObj.sqf"` for each objective position
+6. Move and configure added assets
 
 ##### Faction kits
 In format `kit_FACTION_ROLE` (e.g. `kit_usocp_ftl`).
