@@ -24,7 +24,7 @@ Warm Up scenario with randomized roles
 3. Download Scripts and place to mission folder
 4. Run `[] execVM "addCore.sqf"` in debug console
 5. Run `[] execVM "addObj.sqf"` for each objective position
-6. Move and configure added assets
+6. Move and configure added assets (be aware: deployment positions should be directed to place with enough space for allied vehicles to be spawned)
 
 ##### Faction kits
 In format `kit_FACTION_ROLE` (e.g. `kit_usocp_ftl`).
