@@ -44,7 +44,7 @@ dzn_fnc_tasks_activateTask = {
 	
 	waitUntil { time > dzn_tasks_taskCreateDelay };
 	call dzn_fnc_tasks_createSimpleTask;	
-	call dzn_fnc_tasks_runSeizeAreaHandler;
+	[] spawn dzn_fnc_tasks_runSeizeAreaHandler;
 	
 	publicVariable "Task_StartPos";
 	publicVariable "Task_SeizeArea";
