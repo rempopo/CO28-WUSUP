@@ -5,9 +5,6 @@ dzn_hostiles_reinforcementCheckTimer = 30;
 dzn_hostiles_side			=	east;
 dzn_hostiles_baseInfantryClass	=	"O_Soldier_F";
 
-dzn_hostiles_faction 	= dzn_faction_factionList select ("par_hostileFaction" call BIS_fnc_getParamValue);
-dzn_hostiles_armor 		= "par_hostileArmor" call BIS_fnc_getParamValue;
-
 dzn_hostiles_groupsPerAmount = [
 	["2MP"	, [3, 2, 3, 4]]		/* 2 Men Patrol */
 	,["4MP"	, [0, 2, 3, 4]]		/* 4 Men Patrol */

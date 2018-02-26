@@ -4,6 +4,10 @@ if ((hasInterface && !isServer) || (!isNil "HC" && isServer)) exitWith {};
 call compile preprocessFileLineNumbers "Logic\Hostiles\Settings.sqf";
 call compile preprocessFileLineNumbers "Logic\Hostiles\Functions.sqf";
 
+waitUntil { !isNil "dzn_faction_factionList" };
+dzn_hostiles_faction 	= dzn_faction_factionList select ("par_hostileFaction" call BIS_fnc_getParamValue);
+dzn_hostiles_armor 		= "par_hostileArmor" call BIS_fnc_getParamValue;
+
 waitUntil { time > dzn_hostiles_initDelay };
 waitUntil { !isNil "Task_DynaiZone_Main" && !isNil "Task_DynaiZone_Reinforcement" };
 
@@ -12,6 +16,7 @@ call dzn_fnc_hostiles_addLocationsMain;
 call dzn_fnc_hostiles_addLocationsReinforcement;
 
 dzn_hostiles_LocationsSet = true;
+publicVariable "dzn_hostiles_LocationsSet";
 
 waitUntil { !isNil "dzn_dynai_initialized" && { dzn_dynai_initialized } };
 
