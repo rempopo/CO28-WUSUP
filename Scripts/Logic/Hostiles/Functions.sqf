@@ -17,7 +17,7 @@ dzn_fnc_hostiles_generateGroups = {
 	/*format ["kit_%1_vehicle", dzn_hostiles_faction];*/
 	
 	private _vehicleClasses = if (dzn_hostiles_armor > 0) then { 
-		([dzn_faction_vehicles, dzn_hostiles_faction] call dzn_fnc_getValueByKey) select (dzn_hostiles_armor + 1)
+		([dzn_faction_vehicles, dzn_hostiles_faction] call dzn_fnc_getValueByKey) select (dzn_hostiles_armor - 1)
 	} else {
 		[]
 	};
