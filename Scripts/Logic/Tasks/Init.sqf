@@ -4,7 +4,13 @@ call compile preprocessFileLineNumbers "Logic\Tasks\Settings.sqf";
 call compile preprocessFileLineNumbers "Logic\Tasks\Functions.sqf";
 
 waitUntil { !isNil "dzn_faction_vehicles" && !isNil "dzn_roles_faction" };
-dzn_tasks_alliedVehicleClasses = ([dzn_faction_vehicles, dzn_roles_faction] call dzn_fnc_getValueByKey) select (("par_playerVehicles" call BIS_fnc_getParamValue) - 1);
+private _parPlayerVehicle = ("par_playerVehicles" call BIS_fnc_getParamValue);
+dzn_tasks_alliedVehicleClasses = if ( _parPlayerVehicle > 0 ) then {
+	([dzn_faction_vehicles, dzn_roles_faction] call dzn_fnc_getValueByKey) select (_parPlayerVehicle - 1)
+} else {
+	[]
+};
+
 
 if (hasInterface) then {
 	[] spawn {
