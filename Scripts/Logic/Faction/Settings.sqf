@@ -27,7 +27,6 @@ dzn_faction_vehicles = [
 		, ["rhsusf_m113_usarmy","rhsusf_m113_usarmy_M240","rhsusf_m113_usarmy_MK19","CUP_B_M1130_CV_M2_Woodland"]
 		, ["RHS_M2A3_wd","RHS_M2A2_wd"]
 		, ["rhsusf_m1a1aimwd_usarmy"]
-		, ["rhsusf_m998_d_2dr_fulltop","rhsusf_m998_d_2dr_fulltop"]		
 	]]
 	,["ussf", [
 		["rhsusf_m998_d_4dr","rhsusf_m998_d_2dr"]
@@ -52,9 +51,9 @@ dzn_faction_vehicles = [
 	]]
 	,["ruvv", [
 		["rhs_tigr_msv","rhs_kamaz5350_msv","rhs_tigr_3camo_msv"]
-		, ["rhs_tigr_msv","rhs_kamaz5350_msv","rhs_tigr_3camo_msv"]
 		, ["rhs_tigr_sts_3camo_vv","rhs_tigr_sts_vv","CUP_O_UAZ_AGS30_RU","CUP_O_UAZ_MG_RU"]
 		, ["rhs_btr70_vv","rhs_btr80_vv","rhs_btr60_vv","rhs_btr80a_vv","rhs_gaz66_zu23_vv","RHS_Ural_Zu23_VV_01"]
+		, ["rhs_bmp2d_vv","rhs_bmp2k_vv","CUP_O_BMP2_RU","CUP_O_BMP3_RU","rhs_bmp3m_msv"]
 		, ["CUP_O_T72_RU"]
 	]]
 	,["pmc", [
