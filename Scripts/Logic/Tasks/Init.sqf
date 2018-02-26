@@ -5,8 +5,6 @@ call compile preprocessFileLineNumbers "Logic\Tasks\Functions.sqf";
 
 waitUntil { !isNil "dzn_faction_vehicles" && !isNil "dzn_roles_faction" };
 dzn_tasks_alliedVehicleClasses = ([dzn_faction_vehicles, dzn_roles_faction] call dzn_fnc_getValueByKey) select (("par_playerVehicles" call BIS_fnc_getParamValue) - 1);
-dzn_tasks_seizeTime = "par_capturetimer" call BIS_fnc_getParamValue;
-dzn_tasks_alliedVehicleCount = "par_playerVehiclesCount" call BIS_fnc_getParamValue;
 
 if (hasInterface) then {
 	[] spawn {
