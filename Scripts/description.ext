@@ -46,7 +46,7 @@ class Params
 	{
 		title = "    Время на выполнение (мин)";
 		values[] = {15,20,25,30,35,40,45,50,55,60,120};
-		default = 20;
+		default = 30;
 	}; 
 	class par_capturetimer
 	{
